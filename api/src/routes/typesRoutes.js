@@ -1,9 +1,5 @@
 const { Router } = require("express");
-
 const router = Router();
-const { v4: uuidv4 } = require("uuid");
-const axios = require("axios");
-
 const { Diet } = require("../db");
 
 router.get("/", async (req, res, next) => {
