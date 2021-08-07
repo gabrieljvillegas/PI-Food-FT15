@@ -1,7 +1,8 @@
-import { GET_ALL_RECIPES } from "../actions/constants";
+import { GET_RECIPES, GET_NAME_RECIPES } from "../actions/constants";
 
 var initialState = {
   recipes: [],
+  recipesSearch: [],
 };
 
 function reducer(state = initialState, action) {
@@ -10,10 +11,16 @@ function reducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_ALL_RECIPES:
+    case GET_RECIPES:
       return {
         ...state,
         recipes: payload,
+      };
+    case GET_NAME_RECIPES:
+      console.log("estoy en el reducer");
+      return {
+        ...state,
+        recipesSearch: payload,
       };
     default:
       return state;

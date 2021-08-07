@@ -20,6 +20,7 @@ router.get("/", async (req, res, next) => {
   const { name } = req.query;
 
   let recipesAllApi = [];
+  let recipesAllBD = [];
   try {
     recipesAllApi = await axios.get(`${FOOD_GET_ALL}&apiKey=${API_KEY}`);
     recipesAllApi = recipesAllApi.data.results;
@@ -42,27 +43,29 @@ router.get("/", async (req, res, next) => {
         image: recipe.image,
       };
     });
+
+    recipesAllBD = await Recipe.findAll();
+    recipesAllBD = recipesAllBD.map((recipe) => {
+      return {
+        id: recipe.id,
+        name: recipe.name,
+        summary: recipe.summary,
+        dishTypes: recipe.dishTypes,
+        diets: recipe.diets,
+        spoonacularScore: recipe.spoonacularScore,
+        healthScore: recipe.healthScore,
+        steps: recipe.steps,
+        image: recipe.image,
+      };
+    });
   } catch (error) {
     next(error);
   }
   if (name) {
     try {
-      let recipesFilterBD = await Recipe.findAll({
-        where: { name: { [Op.like]: `%${name}%` } },
-      });
-      recipesFilterBD = recipesFilterBD.map((recipe) => {
-        return {
-          id: recipe.id,
-          name: recipe.name,
-          summary: recipe.summary,
-          dishTypes: recipe.dishTypes,
-          diets: recipe.diets,
-          spoonacularScore: recipe.spoonacularScore,
-          healthScore: recipe.healthScore,
-          steps: recipe.steps,
-          image: recipe.image,
-        };
-      });
+      let recipesFilterBD = await recipesAllBD.filter((recipe) =>
+        recipe.name.toUpperCase().includes(name.toUpperCase())
+      );
 
       recipesFilterApi = recipesAllApi.filter((recipe) => {
         return recipe.name.toUpperCase().includes(name.toUpperCase());
@@ -78,26 +81,8 @@ router.get("/", async (req, res, next) => {
       next(error);
     }
   } else {
-    try {
-      let recipesAllBD = await Recipe.findAll();
-      recipesAllBD = recipesAllBD.map((recipe) => {
-        return {
-          id: recipe.id,
-          name: recipe.name,
-          summary: recipe.summary,
-          dishTypes: recipe.dishTypes,
-          diets: recipe.diets,
-          spoonacularScore: recipe.spoonacularScore,
-          healthScore: recipe.healthScore,
-          steps: recipe.steps,
-          image: recipe.image,
-        };
-      });
-      allRecipes = recipesAllApi.concat(recipesAllBD);
-      res.status(200).json(allRecipes);
-    } catch (error) {
-      next(error);
-    }
+    allRecipes = recipesAllApi.concat(recipesAllBD);
+    res.status(200).json(allRecipes);
   }
 });
 
