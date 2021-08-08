@@ -1,8 +1,8 @@
 const BASE_URL = "http://localhost:3001/";
-const RECIPES_RECIPE_URL = `http://localhost:3001/recipes?name=`;
+const RECIPES_URL = `http://localhost:3001/recipes?name=`;
 const TYPES_URL = `${BASE_URL}types`;
 
 module.exports = {
-  RECIPES_RECIPE_URL,
+  RECIPES_URL,
   TYPES_URL,
 };

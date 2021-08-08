@@ -63,13 +63,19 @@ export const StyledDiv = styled.div`
     }
     &__back {
       transform: rotateY(180deg);
+      display: grid;
 
       &--title {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 0.5rem 3rem;
         h4 {
           font-size: 1.5rem;
         }
       }
       &--content {
+        text-align: justify;
+        padding: 0 3rem;
         p {
           font-size: 1.2rem;
         }

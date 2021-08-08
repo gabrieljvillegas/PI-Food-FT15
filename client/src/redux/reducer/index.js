@@ -2,12 +2,14 @@ import {
   GET_RECIPES,
   GET_NAME_RECIPES,
   SEARCH_BY_NAME,
+  GET_TYPES,
 } from "../actions/constants";
 
 var initialState = {
   recipes: [],
   recipesSearch: [],
   recipesFlag: "",
+  types: [],
 };
 
 function reducer(state = initialState, action) {
@@ -15,7 +17,6 @@ function reducer(state = initialState, action) {
 
   const { type, payload } = action;
   console.log("desde el reducer el type es:", type);
-  console.log(state.recipes);
   switch (type) {
     case GET_RECIPES:
       return {
@@ -36,6 +37,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         recipesSearch: recipesSearchNow,
+      };
+    case GET_TYPES:
+      console.log("tipos?", payload);
+      return {
+        ...state,
+        types: payload,
       };
 
     default:
