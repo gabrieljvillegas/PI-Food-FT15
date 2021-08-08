@@ -1,6 +1,6 @@
 import axios from "axios";
 import { RECIPES_RECIPE_URL } from "../../utils/constants";
-import { GET_RECIPES, GET_NAME_RECIPES, CHANGE_FLAG } from "./constants";
+import { GET_RECIPES, GET_NAME_RECIPES, SEARCH_BY_NAME } from "./constants";
 
 export function getAllRecipes() {
   return function (dispatch) {
@@ -22,11 +22,11 @@ export function getNameRecipes(name) {
     });
   };
 }
-export function changeFlag(flag) {
-  console.log("entre al flag");
-  console.log(CHANGE_FLAG);
+
+export function filterByName(name) {
+  console.log("actions", name);
   return {
-    type: CHANGE_FLAG,
-    payload: flag,
+    type: SEARCH_BY_NAME,
+    payload: name,
   };
 }

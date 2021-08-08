@@ -1,7 +1,7 @@
 import {
   GET_RECIPES,
   GET_NAME_RECIPES,
-  CHANGE_FLAG,
+  SEARCH_BY_NAME,
 } from "../actions/constants";
 
 var initialState = {
@@ -15,6 +15,7 @@ function reducer(state = initialState, action) {
 
   const { type, payload } = action;
   console.log("desde el reducer el type es:", type);
+  console.log(state.recipes);
   switch (type) {
     case GET_RECIPES:
       return {
@@ -27,10 +28,14 @@ function reducer(state = initialState, action) {
         recipesSearch: payload,
         recipesFlag: true,
       };
-    case CHANGE_FLAG:
+
+    case SEARCH_BY_NAME:
+      let recipesSearchNow = state.recipes.filter((recipe) => {
+        return recipe.name.toUpperCase().includes(payload.toUpperCase());
+      });
       return {
         ...state,
-        recipesFlag: payload,
+        recipesSearch: recipesSearchNow,
       };
 
     default:

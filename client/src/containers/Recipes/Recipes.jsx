@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRecipes } from "../../redux/actions";
 import { Link } from "react-router-dom";
@@ -10,17 +10,15 @@ const Recipes = () => {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
   const recipesSearch = useSelector((state) => state.recipesSearch);
-  const recipesFlag = useSelector((state) => state.recipesFlag);
 
   useEffect(() => {
-    console.log("es el use effect");
     dispatch(getAllRecipes());
-  }, []);
+  }, [dispatch]);
 
   return (
     <StyledDiv>
       <div className="recipes container">
-        {recipesFlag ? (
+        {recipesSearch.length ? (
           recipesSearch.map((recipe, idx) => {
             return (
               <Link to="#" className="recipe">
