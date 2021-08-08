@@ -29,6 +29,7 @@ const Recipes = () => {
                   name={recipe.name}
                   image={recipe.image}
                   diets={recipe.diets}
+                  summary={recipe.summary}
                 />
               </Link>
             );
@@ -42,6 +43,7 @@ const Recipes = () => {
                   name={recipe.name}
                   image={recipe.image}
                   diets={recipe.diets}
+                  summary={recipe.summary}
                 />
               </Link>
             );

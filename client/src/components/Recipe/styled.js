@@ -6,32 +6,73 @@ export const StyledDiv = styled.div`
     transition: all 0.1s ease-in-out;
   }
   .recipe {
-    display: grid;
-    grid-template-rows: 25% 50% 25%;
-    align-items: center;
     color: white;
     background-color: black;
-    max-width: 100%;
-    height: 35rem;
     border-radius: 10px;
-    padding: 1.5rem;
+    max-width: 35rem;
+    height: 40rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 0.3s ease;
 
     :hover {
       background-color: #d86018;
+      transform: rotateY(180deg);
     }
 
-    &__name {
-      h4 {
-        font-size: 1.5rem;
+    &__front,
+    &__back {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    &__front {
+      display: grid;
+      grid-template-rows: 25% 50% 25%;
+      align-items: center;
+
+      &--name {
+        padding: 1rem;
+        h4 {
+          font-size: 1.5rem;
+        }
+      }
+      &--image {
+        padding: 1rem;
+        img {
+          border-radius: 0.6rem;
+        }
+      }
+
+      &--diets {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        p {
+          font-weight: 300;
+          font-style: italic;
+          text-align: center;
+          font-size: 1rem;
+        }
       }
     }
-    &__image {
-    }
+    &__back {
+      transform: rotateY(180deg);
 
-    &__diets {
-      p {
-        text-align: center;
-        font-size: 1rem;
+      &--title {
+        h4 {
+          font-size: 1.5rem;
+        }
+      }
+      &--content {
+        p {
+          font-size: 1.2rem;
+        }
       }
     }
   }
