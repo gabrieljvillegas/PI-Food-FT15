@@ -5,6 +5,10 @@ export const StyledDiv = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+
+    .recipe {
+      text-decoration: none;
+    }
   }
   .loading {
     p {

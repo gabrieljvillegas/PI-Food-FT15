@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Route exact path="/" component={LandingPage} />
-      <Route path={["/home", "/videogame/:id", "/create"]}>
+      <Route path={["/home", "/recipes/:id", "/create"]}>
         <Nav />
       </Route>
       <Route exact path="/home" component={Home} />

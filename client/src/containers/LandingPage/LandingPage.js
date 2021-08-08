@@ -5,12 +5,12 @@ import imageLogo from "../../images/wikifood.jpg";
 const LandingPage = () => {
   return (
     <StyledDiv>
-      <div class="landing container">
-        <div class="landing__welcome">
+      <div className="landing container">
+        <div className="landing__welcome">
           <img src={imageLogo} alt="" />
         </div>
-        <div class="landing__links">
-          <Link class="landing__links--link" to="/home">
+        <div className="landing__links">
+          <Link className="landing__links--link" to="/home">
             <h2>Entrar</h2>
           </Link>
         </div>

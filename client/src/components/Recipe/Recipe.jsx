@@ -3,14 +3,14 @@ import { StyledDiv } from "./styled";
 const Recipe = ({ name, image, diets }) => {
   return (
     <StyledDiv>
-      <div class="recipe">
-        <div class="recipe__name">
-          <p>{name}</p>
+      <div className="recipe">
+        <div className="recipe__name">
+          <h4>{name}</h4>
         </div>
-        <div class="recipe__image">
+        <div className="recipe__image">
           <img src={image} alt="" />
         </div>
-        <div class="recipe__diets">
+        <div className="recipe__diets">
           {diets &&
             diets.map((diet, idx) => {
               return <p key={idx}>{diet}</p>;

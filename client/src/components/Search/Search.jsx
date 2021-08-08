@@ -1,7 +1,7 @@
 import { StyledDiv } from "./styled";
 import { useState } from "react";
-import { getNameRecipes } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { getNameRecipes, changeFlag } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,11 @@ const Search = () => {
       dispatch(getNameRecipes(search));
     }
   };
+
+  const handleFlag = (e) => {
+    dispatch(changeFlag(false));
+  };
+
   return (
     <StyledDiv>
       <div className="search">
@@ -28,7 +33,16 @@ const Search = () => {
             placeholder="Ingrese nombre"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Submit</button>
+          <button type="submit" className="search__form--btn">
+            Buscar
+          </button>
+          <button
+            type="reset"
+            className="search__form--btn"
+            onClick={(e) => handleFlag(e)}
+          >
+            Mostrar Todas
+          </button>
         </form>
       </div>
     </StyledDiv>

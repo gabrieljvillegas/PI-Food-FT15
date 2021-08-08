@@ -1,6 +1,6 @@
 import axios from "axios";
 import { RECIPES_RECIPE_URL } from "../../utils/constants";
-import { GET_RECIPES, GET_NAME_RECIPES } from "./constants";
+import { GET_RECIPES, GET_NAME_RECIPES, CHANGE_FLAG } from "./constants";
 
 export function getAllRecipes() {
   return function (dispatch) {
@@ -13,7 +13,6 @@ export function getAllRecipes() {
   };
 }
 export function getNameRecipes(name) {
-  console.log("estoy en las actions");
   return function (dispatch) {
     return axios.get(`${RECIPES_RECIPE_URL}${name}`).then((recipes) => {
       dispatch({
@@ -21,5 +20,13 @@ export function getNameRecipes(name) {
         payload: recipes.data,
       });
     });
+  };
+}
+export function changeFlag(flag) {
+  console.log("entre al flag");
+  console.log(CHANGE_FLAG);
+  return {
+    type: CHANGE_FLAG,
+    payload: flag,
   };
 }
