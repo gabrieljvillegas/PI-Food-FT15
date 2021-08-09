@@ -1,10 +1,13 @@
+import { StyledDiv } from "./styled";
 import Recipes from "../Recipes/Recipes";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Home = () => {
   return (
-    <div>
+    <StyledDiv>
+      <Sidebar />
       <Recipes />
-    </div>
+    </StyledDiv>
   );
 };
 

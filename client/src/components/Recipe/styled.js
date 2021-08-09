@@ -7,7 +7,7 @@ export const StyledDiv = styled.div`
   }
   .recipe {
     color: white;
-    background-color: black;
+    background-color: #19272e;
     border-radius: 10px;
     max-width: 35rem;
     height: 40rem;
@@ -16,7 +16,7 @@ export const StyledDiv = styled.div`
     transition: 0.3s ease;
 
     :hover {
-      background-color: #d86018;
+      background-color: #bc4764;
       transform: rotateY(180deg);
     }
 
@@ -37,6 +37,7 @@ export const StyledDiv = styled.div`
 
       &--name {
         padding: 1rem;
+        text-align: center;
         h4 {
           font-size: 1.5rem;
         }

@@ -1,9 +1,15 @@
+import { StyledDiv } from "./styled";
+
 const Checkbox = ({ label, value, onChange }) => {
   return (
-    <label>
-      <input type="checkbox" checked={value} onChange={onChange} />
-      {label}
-    </label>
+    <StyledDiv>
+      <label className="input">
+        <input type="checkbox" checked={value} onChange={onChange} />
+        <div className="label">
+          <p>{label}</p>
+        </div>
+      </label>
+    </StyledDiv>
   );
 };
 

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  display: grid;
-  grid-template-columns: 15% 85%;
+  max-width: 100%;
+  height: 100%;
+
+  .filter {
+    color: white;
+  }
 `;
