@@ -23,7 +23,11 @@ const Recipe = ({ name, image, diets, summary }) => {
             <h4>Resumen</h4>
           </div>
           <div className="recipe__back--content">
-            <p> {(summary = summary.slice(0, 400))}...</p>
+            <p>
+              {" "}
+              {(summary = summary.slice(0, 400))}
+              ...[LEER MAS]
+            </p>
           </div>
         </div>
       </div>

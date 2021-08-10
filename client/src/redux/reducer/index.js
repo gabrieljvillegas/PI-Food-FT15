@@ -17,6 +17,7 @@ function reducer(state = initialState, action) {
 
   const { type, payload } = action;
   console.log("desde el reducer el type es:", type);
+  console.log("payload", payload);
   switch (type) {
     case GET_RECIPES:
       return {
@@ -34,6 +35,12 @@ function reducer(state = initialState, action) {
       let recipesSearchNow = state.recipes.filter((recipe) => {
         return recipe.name.toUpperCase().includes(payload.toUpperCase());
       });
+      if (payload === "") {
+        return {
+          ...state,
+          recipesSearch: [],
+        };
+      }
       return {
         ...state,
         recipesSearch: recipesSearchNow,

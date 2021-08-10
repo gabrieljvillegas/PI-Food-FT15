@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   background-color: #19272e;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   .nav {
     color: white;
     display: flex;

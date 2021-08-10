@@ -34,7 +34,7 @@ router.get("/", async (req, res, next) => {
       return {
         id: recipe.id,
         name: recipe.title,
-        summary: recipe.summary,
+        summary: recipe.summary.replace(/<[^>]*>/g, ""),
         dishTypes: recipe.dishTypes,
         diets: vegetarian,
         spoonacularScore: recipe.spoonacularScore,
@@ -128,7 +128,7 @@ router.get("/:idReceta", async (req, res, next) => {
       }
       recipeByIdApi = {
         name: recipeByIdApi.title,
-        summary: recipeByIdApi.summary,
+        summary: recipeByIdApi.summary.replace(/<[^>]*>/g, ""),
         id: recipeByIdApi.id,
         dishTypes: recipeByIdApi.dishTypes,
         diets: vegetarian,

@@ -4,7 +4,7 @@ export const StyledDiv = styled.div`
   padding: 1.5rem;
   background-color: #19272e;
   border-radius: 0 5rem 5rem 0;
-  transform: translateX(-14rem);
+  transform: translateX(-75%);
   transition: 0.5s linear;
   :hover {
     transform: translateX(0.001rem);
