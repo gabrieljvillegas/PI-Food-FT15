@@ -8,19 +8,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipes } from "../../redux/actions";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
+ 
   const recipesSearch = useSelector((state) => state.recipesSearch);
 
   const [loading, setLoading] = useState(false);
   const [currentPageAll, setCurrentPageAll] = useState(1);
   const [postsPerPage] = useState(9);
 
-  useEffect(() => {
-    setLoading(true);
-    dispatch(getAllRecipes());
-    setLoading(false);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   dispatch(getAllRecipes());
+  //   setLoading(false);
+  // }, [dispatch]);
 
   //PAGINACION PARA TODAS LAS RECETAS
   const indexOfLastPostAll = currentPageAll * postsPerPage;

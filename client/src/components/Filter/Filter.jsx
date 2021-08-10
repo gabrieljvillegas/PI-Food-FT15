@@ -1,7 +1,7 @@
 import { StyledDiv } from "./styled";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTypes } from "../../redux/actions";
+import { getTypes, filterByType } from "../../redux/actions";
 import Checkbox from "../Checkbox/Checkbox";
 
 const Filter = () => {
@@ -15,10 +15,22 @@ const Filter = () => {
 
   useEffect(() => {
     console.log("soy el filter nuevoo:", filter);
+    dispatch(filterByType(filter));
   }, [filter]);
 
   const handleChange = (e) => {
-    setFilter((prev) => e.target.parentElement.textContent);
+    const finded = filter.find(
+      (diet) => diet === e.target.parentElement.textContent
+    );
+    console.log(finded);
+    if (finded) {
+      const newFilter = filter.filter(
+        (type) => type !== e.target.parentElement.textContent
+      );
+      setFilter(() => newFilter);
+    } else {
+      setFilter((prev) => [...prev, e.target.parentElement.textContent]);
+    }
   };
   return (
     <StyledDiv>

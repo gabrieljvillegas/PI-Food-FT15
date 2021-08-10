@@ -24,16 +24,16 @@ const dietTypes = require("./src/utils/dietsTypes");
 const { Diet } = require("./src/db");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
-  let dietTypesMap = dietTypes.map((type) => {
-    return {
-      name: type,
-    };
-  });
+conn.sync({ force: true }).then(async() => {
+    let dietTypesMap = dietTypes.map((type) => {
+        return {
+            name: type,
+        };
+    });
 
-  await Diet.bulkCreate(dietTypesMap);
+    await Diet.bulkCreate(dietTypesMap);
 
-  server.listen(3001, () => {
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
-  });
+    server.listen(3001, () => {
+        console.log("%s listening at 3001"); // eslint-disable-line no-console
+    }).catch(error => console.log(error));
 });

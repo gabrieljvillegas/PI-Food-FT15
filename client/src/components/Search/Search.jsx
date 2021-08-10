@@ -1,18 +1,20 @@
 import { StyledDiv } from "./styled";
 import { useState, useEffect } from "react";
 import { filterByName } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Search = () => {
+  const recipes = useSelector((state) => state.recipes);
   const dispatch = useDispatch();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState([]);
 
   const handleChange = (e) => {
-    setSearch(() => e.target.value);
+    setSearch(() => [e.target.value]);
   };
 
   useEffect(() => {
     dispatch(filterByName(search));
+    console.log(recipes);
   }, [dispatch, search]);
 
   return (
