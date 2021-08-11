@@ -4,7 +4,6 @@ import { filterByName } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Search = () => {
-  const recipes = useSelector((state) => state.recipes);
   const dispatch = useDispatch();
   const [search, setSearch] = useState([]);
 

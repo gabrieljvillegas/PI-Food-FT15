@@ -18,6 +18,7 @@ const Recipes = ({ recipes, loading }) => {
       <div className="recipes container">
         {recipes.length ? (
           recipes.map((recipe, idx) => {
+            console.log(recipe.spoonacularScore);
             return (
               <Link to="#" className="recipe">
                 <Recipe
@@ -26,6 +27,7 @@ const Recipes = ({ recipes, loading }) => {
                   image={recipe.image}
                   diets={recipe.diets}
                   summary={recipe.summary}
+                  spoonacularScore={recipe.spoonacularScore}
                 />
               </Link>
             );

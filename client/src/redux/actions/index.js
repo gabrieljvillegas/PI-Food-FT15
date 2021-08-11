@@ -5,7 +5,8 @@ import {
     GET_NAME_RECIPES,
     SEARCH_BY_NAME,
     GET_TYPES,
-    FILTER_BY_TYPE
+    FILTER_BY_TYPE,
+    ORDER_RECIPES
 } from "./constants";
 
 export function getAllRecipes() {
@@ -54,5 +55,12 @@ export function filterByType(diet) {
     return {
         type: FILTER_BY_TYPE,
         payload: diet,
+    };
+}
+export function orderRecipes(order) {
+    console.log("actions order:", order);
+    return {
+        type: ORDER_RECIPES,
+        payload: order,
     };
 }

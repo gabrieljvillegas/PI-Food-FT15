@@ -1,31 +1,50 @@
 import { StyledDiv } from "./styled";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Checkbox from "../Checkbox/Checkbox";
+import { orderRecipes } from "../../redux/actions";
 
 const Order = () => {
+  const dispatch = useDispatch();
   const [order, setOrder] = useState([]);
 
   function handleChange(e) {
-    console.log(e.target.checked);
-    setOrder(() => e.target.parentElement.textContent);
+    setOrder(() => e.target.value);
   }
 
   useEffect(() => {
     console.log("order nuevo:", order);
-  }, [order]);
+    dispatch(orderRecipes(order));
+  }, [dispatch, order]);
   return (
     <StyledDiv>
       <div className="order">
         <div className="order__content">
           <div className="order__content--AZ">
-            <Checkbox label={"A-Z"} onChange={(e) => handleChange(e)} />
+            <input
+              name="order"
+              type="radio"
+              value="A-Z"
+              onChange={(e) => handleChange(e)}
+            />
+            A-Z
           </div>
           <div className="order__content--ZA">
-            <Checkbox label={"Z-A"} onChange={(e) => handleChange(e)} />
+            <input
+              name="order"
+              type="radio"
+              value="Z-A"
+              onChange={(e) => handleChange(e)}
+            />
+            Z-A
           </div>
           <div className="order__content--score">
-            <Checkbox label={"Score"} onChange={(e) => handleChange(e)} />
+            <input
+              name="order"
+              type="radio"
+              value="Score"
+              onChange={(e) => handleChange(e)}
+            />
+            Score
           </div>
         </div>
         <div className="order__title">
