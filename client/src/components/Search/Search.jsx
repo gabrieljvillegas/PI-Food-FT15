@@ -9,12 +9,11 @@ const Search = () => {
   const [search, setSearch] = useState([]);
 
   const handleChange = (e) => {
-    setSearch(() => [e.target.value]);
+    setSearch(() => e.target.value);
   };
 
   useEffect(() => {
     dispatch(filterByName(search));
-    console.log(recipes);
   }, [dispatch, search]);
 
   return (

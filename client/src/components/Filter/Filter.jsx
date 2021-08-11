@@ -16,7 +16,7 @@ const Filter = () => {
   useEffect(() => {
     console.log("soy el filter nuevoo:", filter);
     dispatch(filterByType(filter));
-  }, [filter]);
+  }, [dispatch, filter]);
 
   const handleChange = (e) => {
     const finded = filter.find(
