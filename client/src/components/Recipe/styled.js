@@ -13,7 +13,7 @@ export const StyledDiv = styled.div`
     height: 40rem;
     position: relative;
     transform-style: preserve-3d;
-    transition: 0.3s ease;
+    transition: 0.8s ease;
 
     :hover {
       background-color: #bc4764;

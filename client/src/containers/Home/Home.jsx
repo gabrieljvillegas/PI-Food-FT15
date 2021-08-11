@@ -2,7 +2,6 @@ import { StyledDiv } from "./styled";
 import Recipes from "../Recipes/Recipes";
 import Sidebar from "../Sidebar/Sidebar";
 import PaginationAll from "../../components/PaginationAll/PaginationAll";
-import PaginationSearch from "../../components/PaginationSearch/PaginationSearch";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipes } from "../../redux/actions";
@@ -49,7 +48,7 @@ const Home = () => {
         {recipesSearch.length ? (
           <div className="home container">
             <div className="home__pagination">
-              <PaginationSearch
+              <PaginationAll
                 postsPerPage={postsPerPage}
                 totalPosts={recipesSearch.length}
                 paginate={paginates}

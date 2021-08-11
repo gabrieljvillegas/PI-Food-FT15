@@ -52,7 +52,7 @@ const Filter = () => {
           </div>
         </div>
         <div className="filter__title">
-          <p>Filtrar</p>
+          <p>Filtro</p>
         </div>
       </div>
     </StyledDiv>
