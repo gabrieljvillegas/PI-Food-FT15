@@ -1,6 +1,6 @@
 import { StyledDiv } from "./styled";
 
-const Recipe = ({ name, image, diets, summary }) => {
+const Recipe = ({ name, image, diets, summary, spoonacularScore }) => {
   return (
     <StyledDiv>
       <div className="recipe">
@@ -9,6 +9,10 @@ const Recipe = ({ name, image, diets, summary }) => {
             <h4>{name}</h4>
           </div>
           <div className="recipe__front--image">
+            <div className="recipe__front--image--score">
+              <p>Score</p>
+              <p>{spoonacularScore}</p>
+            </div>
             <img src={image} alt="" />
           </div>
           <div className="recipe__front--diets">

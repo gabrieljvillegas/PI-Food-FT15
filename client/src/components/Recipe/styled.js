@@ -8,9 +8,9 @@ export const StyledDiv = styled.div`
   .recipe {
     color: white;
     background-color: #19272e;
-    border-radius: 10px;
-    max-width: 35rem;
-    height: 40rem;
+    border-radius: 1rem;
+    max-width: 30rem;
+    height: 35rem;
     position: relative;
     transform-style: preserve-3d;
     transition: 0.8s ease;
@@ -43,9 +43,26 @@ export const StyledDiv = styled.div`
         }
       }
       &--image {
+        display: flex;
         padding: 1rem;
+        align-items: center;
+        position: relative;
+
+        &--score {
+          position: absolute;
+          border-radius: 50%;
+          background-color: #bc4764;
+          align-self: flex-start;
+          padding: 1rem;
+          margin: 1rem;
+          p {
+            font-size: 1rem;
+            text-align: center;
+          }
+        }
         img {
-          border-radius: 0.6rem;
+          width: 100%;
+          border-radius: 0.5rem;
         }
       }
 

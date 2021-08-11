@@ -37,14 +37,23 @@ const Order = () => {
             />
             Z-A
           </div>
-          <div className="order__content--score">
+          <div className="order__content--scoreDown">
             <input
               name="order"
               type="radio"
-              value="Score"
+              value="ScoreDown"
               onChange={(e) => handleChange(e)}
             />
-            Score
+            Score Down
+          </div>
+          <div className="order__content--scoreUp">
+            <input
+              name="order"
+              type="radio"
+              value="ScoreUp"
+              onChange={(e) => handleChange(e)}
+            />
+            Score Up
           </div>
         </div>
         <div className="order__title">
