@@ -308,9 +308,11 @@ function reducer(state = initialState, action) {
         }else{
           orderF(state.recipes,payload)
        }
+
+       const newArray = orderRecipes.map((recipe) => recipe)
        return {
          ...state,
-         recipesSearch: orderRecipes,
+         recipesSearch: newArray,
         };
 
 

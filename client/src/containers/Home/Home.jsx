@@ -46,6 +46,7 @@ const Home = () => {
   const paginates = (pageNumber) => setCurrentPageAll(pageNumber);
   console.log(recipesSearch.length);
 
+  console.log(recipesSearch)
   return (
     <StyledDiv>
       <Sidebar />
