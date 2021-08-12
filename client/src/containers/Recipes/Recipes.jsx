@@ -20,9 +20,9 @@ const Recipes = ({ recipes, loading }) => {
           recipes.map((recipe, idx) => {
             console.log(recipe.spoonacularScore);
             return (
-              <Link to="#" className="recipe">
+              <Link to={`/recipeDetail/${recipe.id}`} className="recipe">
                 <Recipe
-                  key={idx}
+                  id={recipe.id}
                   name={recipe.name}
                   image={recipe.image}
                   diets={recipe.diets}
