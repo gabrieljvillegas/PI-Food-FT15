@@ -18,7 +18,6 @@ const Recipes = ({ recipes, loading }) => {
       <div className="recipes container">
         {recipes.length ? (
           recipes.map((recipe, idx) => {
-            console.log(recipe.spoonacularScore);
             return (
               <Link to={`/recipeDetail/${recipe.id}`} className="recipe">
                 <Recipe

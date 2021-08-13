@@ -5,210 +5,212 @@ import {
   GET_TYPES,
   FILTER_BY_TYPE,
   ORDER_RECIPES,
+  GET_ID_RECIPES,
 } from "../actions/constants";
 
-const recipes2 = [
-  {
-    id: "1",
-    name: "Cauliflower, Brown Rice, and Vegetable Fried Rice ",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image: "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    id: "2",
-    name: "Homemade Garlic and Basil French Fries",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
-    diets: ["dairy free", "lacto ovo vegetarian", "vegan"],
-  },
-  {
-    name: "hola",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Berry Banana Breakfast Smoothie",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Garlicky Kale",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Chicken Tortilla Soup (Slow Cooker)",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "African Chicken Peanut Stew",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Nigerian Snail Stew",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Red Kidney Bean Jambalaya",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Homemade Garlic and Basil French Fries",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
-    diets: ["dairy free", "lacto ovo vegetarian", "vegan"],
-  },
-  {
-    name: "hola",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  {
-    name: "Berry Banana Breakfast Smoothie",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "whole30"],
-  },
-  {
-    name: "Garlicky Kale",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
-    diets: ["whole30", "vegetarian"],
-  },
-  {
-    name: "Chicken Tortilla Soup (Slow Cooker)",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["primal", "vegetarian"],
-  },
-  {
-    name: "African Chicken Peanut Stew",
-    summary: "ajsduasdbiabsdiuabsiduabsudi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-    diets: ["vegan", "vegetarian"],
-  },
-  // {
-  //     name: "Nigerian Snail Stew",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Red Kidney Bean Jambalaya",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Homemade Garlic and Basil French Fries",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
-  //     diets: ["dairy free",
-  //         "lacto ovo vegetarian",
-  //         "vegan"
-  //     ],
-  // },
-  // {
-  //     name: "hola",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Berry Banana Breakfast Smoothie",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Garlicky Kale",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Chicken Tortilla Soup (Slow Cooker)",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "African Chicken Peanut Stew",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Nigerian Snail Stew",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-  // {
-  //     name: "Red Kidney Bean Jambalaya",
-  //     summary: "ajsduasdbiabsdiuabsiduabsudi",
-  //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
-  //     diets: ["vegan", "vegetarian"],
-  // },
-];
-const dietTypes = [
-  {
-    name: "gluten free",
-  },
-  {
-    name: "ketogenic",
-  },
-  {
-    name: "vegetarian",
-  },
-  {
-    name: "lacto ovo vegetarian",
-  },
-  {
-    name: "vegan",
-  },
-  {
-    name: "paleo",
-  },
-  {
-    name: "pescetarian",
-  },
-  {
-    name: "primal",
-  },
-  {
-    name: "whole30",
-  },
-];
+// const recipes2 = [
+//   {
+//     id: "1",
+//     name: "Cauliflower, Brown Rice, and Vegetable Fried Rice ",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image: "https://spoonacular.com/recipeImages/716426-312x231.jpg",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     id: "2",
+//     name: "Homemade Garlic and Basil French Fries",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
+//     diets: ["dairy free", "lacto ovo vegetarian", "vegan"],
+//   },
+//   {
+//     name: "hola",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Berry Banana Breakfast Smoothie",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Garlicky Kale",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Chicken Tortilla Soup (Slow Cooker)",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "African Chicken Peanut Stew",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Nigerian Snail Stew",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Red Kidney Bean Jambalaya",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Homemade Garlic and Basil French Fries",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
+//     diets: ["dairy free", "lacto ovo vegetarian", "vegan"],
+//   },
+//   {
+//     name: "hola",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   {
+//     name: "Berry Banana Breakfast Smoothie",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "whole30"],
+//   },
+//   {
+//     name: "Garlicky Kale",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
+//     diets: ["whole30", "vegetarian"],
+//   },
+//   {
+//     name: "Chicken Tortilla Soup (Slow Cooker)",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["primal", "vegetarian"],
+//   },
+//   {
+//     name: "African Chicken Peanut Stew",
+//     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//     diets: ["vegan", "vegetarian"],
+//   },
+//   // {
+//   //     name: "Nigerian Snail Stew",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Red Kidney Bean Jambalaya",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Homemade Garlic and Basil French Fries",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://spoonacular.com/recipeImages/715594-312x231.jpg",
+//   //     diets: ["dairy free",
+//   //         "lacto ovo vegetarian",
+//   //         "vegan"
+//   //     ],
+//   // },
+//   // {
+//   //     name: "hola",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Berry Banana Breakfast Smoothie",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Garlicky Kale",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://spoonacular.com/recipeImages/644387-312x231.jpg",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Chicken Tortilla Soup (Slow Cooker)",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "African Chicken Peanut Stew",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Nigerian Snail Stew",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+//   // {
+//   //     name: "Red Kidney Bean Jambalaya",
+//   //     summary: "ajsduasdbiabsdiuabsiduabsudi",
+//   //     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeSzuQNFNwZHJmfbf2YqXKaA5v7mZ0XupANw&usqp=CAU",
+//   //     diets: ["vegan", "vegetarian"],
+//   // },
+// ];
+// const dietTypes = [
+//   {
+//     name: "gluten free",
+//   },
+//   {
+//     name: "ketogenic",
+//   },
+//   {
+//     name: "vegetarian",
+//   },
+//   {
+//     name: "lacto ovo vegetarian",
+//   },
+//   {
+//     name: "vegan",
+//   },
+//   {
+//     name: "paleo",
+//   },
+//   {
+//     name: "pescetarian",
+//   },
+//   {
+//     name: "primal",
+//   },
+//   {
+//     name: "whole30",
+//   },
+// ];
 
 var initialState = {
-  recipes: recipes2,
+  recipes: [],
   recipesSearch: [],
   recipesFlag: "",
-  types: dietTypes,
+  types: [],
+  recipeDetail: [],
 };
 
 function reducer(state = initialState, action) {
@@ -325,6 +327,15 @@ function reducer(state = initialState, action) {
         recipesSearch: newArray,
       };
 
+    case GET_ID_RECIPES:
+      console.log("payload", payload);
+      const recipeIdDetail = state.recipes.find(
+        (recipe) => recipe.id === parseInt(payload)
+      );
+      return {
+        ...state,
+        recipeDetail: recipeIdDetail,
+      };
     default:
       return state;
   }
