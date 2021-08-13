@@ -26,16 +26,21 @@ router.get("/", async (req, res, next) => {
     recipesAllApi = recipesAllApi.data.results;
     let vegetarian = [];
     recipesAllApi = recipesAllApi.map((recipe) => {
+      let recipeDiet = recipe.diets.map(
+        (diet) => diet.charAt(0).toUpperCase() + diet.slice(1)
+      );
       if (recipe.vegetarian) {
-        vegetarian = [...recipe.diets, "vegetarian"];
+        vegetarian = [...recipeDiet, "Vegetarian"];
       } else {
-        vegetarian = recipe.diets;
+        vegetarian = recipeDiet;
       }
       return {
         id: recipe.id,
         name: recipe.title,
         summary: recipe.summary.replace(/<[^>]*>/g, ""),
-        dishTypes: recipe.dishTypes,
+        dishTypes: recipe.dishTypes.map(
+          (dish) => dish.charAt(0).toUpperCase() + dish.slice(1)
+        ),
         diets: vegetarian,
         spoonacularScore: recipe.spoonacularScore,
         healthScore: recipe.healthScore,

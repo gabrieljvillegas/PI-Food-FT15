@@ -11,7 +11,7 @@ const RecipeDetail = (props) => {
 
   useEffect(() => {
     dispatch(getIdRecipe(idRecipe));
-  }, [dispatch]);
+  }, [dispatch, idRecipe]);
 
   console.log("desde el recipes:", recipeDetail);
 
@@ -81,7 +81,7 @@ const RecipeDetail = (props) => {
           </div>
           <div className="detail__steps">
             <div className="detail__steps--el">
-              {recipeDetail.steps.steps &&
+              {recipeDetail.steps &&
                 recipeDetail.steps.steps.map((step) => {
                   return (
                     <div className="el--flex">

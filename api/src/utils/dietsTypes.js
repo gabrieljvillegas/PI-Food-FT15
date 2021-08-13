@@ -1,13 +1,13 @@
 const dietTypes = [
-  "gluten free",
-  "ketogenic",
-  "vegetarian",
-  "lacto ovo vegetarian",
-  "vegan",
-  "pescetarian",
-  "paleo",
-  "primal",
-  "whole30",
+  "Gluten free",
+  "Dairy free",
+  "Lacto ovo vegetarian",
+  "Vegan",
+  "Vegetarian",
+  "Primal",
+  "Paleolithic",
+  "Pescatarian",
+  "Fodmap friendly",
 ];
 
 module.exports = dietTypes;

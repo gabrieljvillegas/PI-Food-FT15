@@ -25,7 +25,7 @@ export const StyledDiv = styled.div`
             font-size: 1.7rem;
           }
           width: 40%;
-          height: 50%;
+          height: 100%;
           box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
           transform: rotate(-14deg);
           color: white;
@@ -89,8 +89,6 @@ export const StyledDiv = styled.div`
           padding: 0.5rem;
           text-align: center;
 
-          
-
           &--title {
             font-weight: bold;
             font-size: 1.7rem;
@@ -108,39 +106,34 @@ export const StyledDiv = styled.div`
               padding: 0.5rem;
               background-color: #19272e;
             }
+          }
         }
-      }
-      
-      .scores{
-        text-align:center;
-        color:white;
-        p{
-          font-size: 1.3rem;
-        }
-        .detail__score, .detail__health{
+
+        .scores {
+          text-align: center;
+          color: white;
+          p {
+            font-size: 1.3rem;
+          }
+          .detail__score,
+          .detail__health {
             border-radius: 50%;
             background-color: #bc4764;
             align-self: flex-start;
             padding: 1rem;
             margin: 1rem;
-            
+          }
         }
       }
-
-
-      
-    }
-    .detail__steps{
-
-      &--el{
-        
-        .el--flex{
+      .detail__steps {
+        &--el {
+          .el--flex {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1rem;
           }
-
+        }
       }
     }
   }
