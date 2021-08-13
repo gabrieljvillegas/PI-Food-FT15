@@ -1,7 +1,7 @@
 import { StyledDiv } from "./styled";
-import { useState, useEffect } from "react";
-import { filterByName } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { getNameRecipes } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -10,15 +10,15 @@ const Search = () => {
   const handleChange = (e) => {
     setSearch(() => e.target.value);
   };
-
-  useEffect(() => {
-    dispatch(filterByName(search));
-  }, [dispatch, search]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getNameRecipes(search));
+  };
 
   return (
     <StyledDiv>
       <div className="search">
-        <form className="search__form" action="">
+        <form className="search__form" onSubmit={(e) => handleSubmit(e)}>
           <input
             className="search__form--input"
             type="text"
@@ -26,6 +26,7 @@ const Search = () => {
             placeholder="Ingrese nombre"
             onChange={(e) => handleChange(e)}
           />
+          <button type="submit">Search</button>
         </form>
       </div>
     </StyledDiv>

@@ -12,7 +12,6 @@ const Order = () => {
   }
 
   useEffect(() => {
-    console.log("order nuevo:", order);
     dispatch(orderRecipes(order));
   }, [dispatch, order]);
   return (

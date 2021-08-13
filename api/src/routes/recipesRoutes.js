@@ -9,7 +9,7 @@ const isUUID = require("is-uuid");
 
 const { Recipe, Diet } = require("../db");
 const { API_KEY } = process.env;
-const { FOOD_GET_ALL } = require("../utils/constants");
+const { FOOD_GET_ALL, FOOD_GET_NAME } = require("../utils/constants");
 
 // ----------------------------------------------------------------------------
 // GET: Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
@@ -21,81 +21,133 @@ router.get("/", async (req, res, next) => {
 
   let recipesAllApi = [];
   let recipesAllBD = [];
-  try {
-    recipesAllApi = await axios.get(`${FOOD_GET_ALL}&apiKey=${API_KEY}`);
-    recipesAllApi = recipesAllApi.data.results;
-    let vegetarian = [];
-    recipesAllApi = recipesAllApi.map((recipe) => {
-      let recipeDiet = recipe.diets.map(
-        (diet) => diet.charAt(0).toUpperCase() + diet.slice(1)
-      );
-      if (recipe.vegetarian) {
-        vegetarian = [...recipeDiet, "Vegetarian"];
-      } else {
-        vegetarian = recipeDiet;
-      }
-      return {
-        id: recipe.id,
-        name: recipe.title,
-        summary: recipe.summary.replace(/<[^>]*>/g, ""),
-        dishTypes: recipe.dishTypes.map(
-          (dish) => dish.charAt(0).toUpperCase() + dish.slice(1)
-        ),
-        diets: vegetarian,
-        spoonacularScore: recipe.spoonacularScore,
-        healthScore: recipe.healthScore,
-        steps: recipe.analyzedInstructions[0],
-        image: recipe.image,
-      };
-    });
 
-    recipesAllBD = await Recipe.findAll({
-      include: {
-        model: Diet,
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
-      },
-    });
-    recipesAllBD = recipesAllBD.map((recipe) => {
-      return {
-        id: recipe.id,
-        name: recipe.name,
-        summary: recipe.summary,
-        dishTypes: recipe.dishTypes,
-        diets: recipe.Diets.map((diet) => diet.name),
-        spoonacularScore: recipe.spoonacularScore,
-        healthScore: recipe.healthScore,
-        steps: recipe.steps,
-        image: recipe.image,
-      };
-    });
-  } catch (error) {
-    next(error);
-  }
   if (name) {
     try {
-      let recipesFilterBD = await recipesAllBD.filter((recipe) =>
-        recipe.name.toUpperCase().includes(name.toUpperCase())
-      );
+      //Llamada a API por nombre
 
-      recipesFilterApi = recipesAllApi.filter((recipe) => {
-        return recipe.name.toUpperCase().includes(name.toUpperCase());
+      recipesAllApi = await axios.get(
+        `${FOOD_GET_NAME}${name}&apiKey=${API_KEY}`
+      );
+      recipesAllApi = recipesAllApi.data.results;
+
+      let vegetarian = [];
+      recipesAllApi = recipesAllApi.map((recipe) => {
+        let recipeDiet = recipe.diets.map(
+          (diet) => diet.charAt(0).toUpperCase() + diet.slice(1)
+        );
+        if (recipe.vegetarian) {
+          vegetarian = [...recipeDiet, "Vegetarian"];
+        } else {
+          vegetarian = recipeDiet;
+        }
+        return {
+          id: recipe.id,
+          name: recipe.title,
+          summary: recipe.summary.replace(/<[^>]*>/g, ""),
+          dishTypes: recipe.dishTypes.map(
+            (dish) => dish.charAt(0).toUpperCase() + dish.slice(1)
+          ),
+          diets: vegetarian,
+          spoonacularScore: recipe.spoonacularScore,
+          healthScore: recipe.healthScore,
+          steps: recipe.analyzedInstructions[0],
+          image: recipe.image,
+        };
       });
 
-      if (recipesFilterApi.length > 0 || recipesFilterBD.length > 0) {
-        let recipesFilterAll = recipesFilterBD.concat(recipesFilterApi);
-        res.status(200).json(recipesFilterAll);
+      //Llamada a BD por nombre
+      recipesAllBD = await Recipe.findAll({
+        where: { name: { [Op.like]: `%${name}%` } },
+        include: {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+
+      recipesAllBD = recipesAllBD.map((recipe) => {
+        return {
+          id: recipe.id,
+          name: recipe.name,
+          summary: recipe.summary,
+          dishTypes: recipe.dishTypes,
+          diets: recipe.Diets.map((diet) => diet.name),
+          spoonacularScore: recipe.spoonacularScore,
+          healthScore: recipe.healthScore,
+          steps: recipe.steps,
+          image: recipe.image,
+        };
+      });
+
+      let allRecipes = recipesAllApi.concat(recipesAllBD);
+      if (allRecipes.length > 0) {
+        res.status(200).json(allRecipes);
       } else {
-        res.status(400).json("No existe una receta que contenga esa palabra");
+        res.status(200).json("No se encuentran recetas con ese nombre");
       }
     } catch (error) {
       next(error);
     }
   } else {
-    allRecipes = recipesAllApi.concat(recipesAllBD);
-    res.status(200).json(allRecipes);
+    try {
+      recipesAllApi = await axios.get(`${FOOD_GET_ALL}&apiKey=${API_KEY}`);
+      recipesAllApi = recipesAllApi.data.results;
+      let vegetarian = [];
+      recipesAllApi = recipesAllApi.map((recipe) => {
+        let recipeDiet = recipe.diets.map(
+          (diet) => diet.charAt(0).toUpperCase() + diet.slice(1)
+        );
+        if (recipe.vegetarian) {
+          vegetarian = [...recipeDiet, "Vegetarian"];
+        } else {
+          vegetarian = recipeDiet;
+        }
+        return {
+          id: recipe.id,
+          name: recipe.title,
+          summary: recipe.summary.replace(/<[^>]*>/g, ""),
+          dishTypes: recipe.dishTypes.map(
+            (dish) => dish.charAt(0).toUpperCase() + dish.slice(1)
+          ),
+          diets: vegetarian,
+          spoonacularScore: recipe.spoonacularScore,
+          healthScore: recipe.healthScore,
+          steps: recipe.analyzedInstructions[0],
+          image: recipe.image,
+        };
+      });
+
+      recipesAllBD = await Recipe.findAll({
+        include: {
+          model: Diet,
+          attributes: ["id", "name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+      recipesAllBD = recipesAllBD.map((recipe) => {
+        return {
+          id: recipe.id,
+          name: recipe.name,
+          summary: recipe.summary,
+          dishTypes: recipe.dishTypes,
+          diets: recipe.Diets.map((diet) => diet.name),
+          spoonacularScore: recipe.spoonacularScore,
+          healthScore: recipe.healthScore,
+          steps: recipe.steps,
+          image: recipe.image,
+        };
+      });
+
+      let allRecipes = recipesAllApi.concat(recipesAllBD);
+      res.status(200).json(allRecipes);
+    } catch (error) {
+      next(error);
+    }
   }
 });
 
@@ -147,7 +199,7 @@ router.get("/:idReceta", async (req, res, next) => {
         diets: vegetarian,
         spoonacularScore: recipeByIdApi.spoonacularScore,
         healthScore: recipeByIdApi.healthScore,
-        steps: recipeByIdApi.steps,
+        steps: recipeByIdApi.analyzedInstructions[0],
         image: recipeByIdApi.image,
       };
 

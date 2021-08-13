@@ -1,7 +1,6 @@
 import {
   GET_RECIPES,
   GET_NAME_RECIPES,
-  SEARCH_BY_NAME,
   GET_TYPES,
   FILTER_BY_TYPE,
   ORDER_RECIPES,
@@ -210,7 +209,7 @@ var initialState = {
   recipesSearch: [],
   recipesFlag: "",
   types: [],
-  recipeDetail: [],
+  recipeDetail: {},
 };
 
 function reducer(state = initialState, action) {
@@ -227,23 +226,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         recipesSearch: payload,
-        recipesFlag: true,
-      };
-
-    case SEARCH_BY_NAME:
-      let recipesSearchNow = state.recipes.filter((recipe) => {
-        // return recipe.name.toUpperCase().includes(payload.toUpperCase());
-        return recipe.name.toUpperCase().includes(payload);
-      });
-      if (payload === "") {
-        return {
-          ...state,
-          recipesSearch: [],
-        };
-      }
-      return {
-        ...state,
-        recipesSearch: recipesSearchNow,
       };
 
     case GET_TYPES:
@@ -286,7 +268,6 @@ function reducer(state = initialState, action) {
         orderRecipes = recipesToFilter.sort((a, b) => {
           switch (value) {
             case "A-Z":
-              console.log(value);
               if (a.name > b.name) {
                 return 1;
               } else {
@@ -328,13 +309,9 @@ function reducer(state = initialState, action) {
       };
 
     case GET_ID_RECIPES:
-      console.log("payload", payload);
-      const recipeIdDetail = state.recipes.find(
-        (recipe) => recipe.id === parseInt(payload)
-      );
       return {
         ...state,
-        recipeDetail: recipeIdDetail,
+        recipeDetail: payload,
       };
     default:
       return state;

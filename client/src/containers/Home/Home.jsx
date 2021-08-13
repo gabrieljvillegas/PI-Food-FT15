@@ -22,11 +22,6 @@ const Home = () => {
     setLoading(false);
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log("estoy aca en home");
-    console.log(recipesSearch);
-  }, [recipesSearch]);
-
   //PAGINACION PARA TODAS LAS RECETAS
   const indexOfLastPostAll = currentPageAll * postsPerPage;
   const indexOfFirstPostAll = indexOfLastPostAll - postsPerPage;
@@ -44,9 +39,7 @@ const Home = () => {
     indexOfLastPostFilter
   );
   const paginates = (pageNumber) => setCurrentPageAll(pageNumber);
-  console.log(recipesSearch.length);
 
-  console.log(recipesSearch)
   return (
     <StyledDiv>
       <Sidebar />

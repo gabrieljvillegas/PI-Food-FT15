@@ -14,7 +14,6 @@ const Filter = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("soy el filter nuevoo:", filter);
     dispatch(filterByType(filter));
   }, [dispatch, filter]);
 
@@ -22,7 +21,6 @@ const Filter = () => {
     const finded = filter.find(
       (diet) => diet === e.target.parentElement.textContent
     );
-    console.log(finded);
     if (finded) {
       const newFilter = filter.filter(
         (type) => type !== e.target.parentElement.textContent
@@ -38,9 +36,10 @@ const Filter = () => {
         <div className="filter__content">
           <div className="filter__content--check">
             {types &&
-              types.map((type) => {
+              types.map((type, idx) => {
                 return (
                   <Checkbox
+                    key={idx}
                     label={type.name}
                     onChange={(e) => handleChange(e)}
                   />
