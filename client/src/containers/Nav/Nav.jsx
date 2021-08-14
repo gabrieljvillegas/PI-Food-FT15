@@ -11,8 +11,8 @@ const Nav = () => {
           <img src={imageLogo} alt="" />
         </div>
         <div className="nav__back">
-          <Route path={"/recipeDetail"}>
-            <Link className="nav__back--link" to="/home">
+          <Route path={["/recipeDetail", "/createRecipe"]}>
+            <Link className="nav__back--link" to={"/home"}>
               Volver
             </Link>
           </Route>

@@ -5,6 +5,7 @@ import PaginationAll from "../../components/PaginationAll/PaginationAll";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipes } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -47,8 +48,13 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          <p>Cargando... desde el home</p>
+          <div className="home container">
+            <p>Cargando... desde el home</p>
+          </div>
         )}
+        <Link to={"/createRecipe"} className="btn-create">
+          Add <br /> Recipe
+        </Link>
       </div>
     </StyledDiv>
   );
