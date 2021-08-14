@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
   width: 100%;
   height: 100%;
   .detail {
@@ -126,8 +127,12 @@ export const StyledDiv = styled.div`
         }
       }
       .detail__steps {
+        margin-top: 2rem;
+        text-align: center;
         &--el {
+          margin-top: 2rem;
           .el--flex {
+            text-align: start;
             display: flex;
             align-items: center;
             gap: 1rem;

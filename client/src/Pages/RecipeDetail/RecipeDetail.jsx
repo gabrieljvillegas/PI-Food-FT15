@@ -38,18 +38,25 @@ const RecipeDetail = (props) => {
               <div className="detail__dishTypes">
                 <p className="detail__dishTypes--title">Dish Types</p>
                 <div className="detail__dishTypes--content">
-                  {recipeDetail.dishTypes.lenght &&
+                  {recipeDetail.dishTypes.lenght ? (
                     recipeDetail.dishTypes.map((type) => {
                       return <p>{type}</p>;
-                    })}
+                    })
+                  ) : (
+                    <p>Don't found</p>
+                  )}
                 </div>
               </div>
               <div className="detail__diets">
                 <p className="detail__diets--title">Diets</p>
                 <div className="detail__diets--content">
-                  {recipeDetail.diets.map((diet) => {
-                    return <p>{diet}</p>;
-                  })}
+                  {recipeDetail.diets.length ? (
+                    recipeDetail.diets.map((diet) => {
+                      return <p>{diet}</p>;
+                    })
+                  ) : (
+                    <p>Diets don't found</p>
+                  )}
                 </div>
               </div>
               <div className="scores">
@@ -68,8 +75,9 @@ const RecipeDetail = (props) => {
               </div>
             </div>
             <div className="detail__steps">
+              <h4>Steps</h4>
               <div className="detail__steps--el">
-                {recipeDetail.steps &&
+                {recipeDetail.steps ? (
                   recipeDetail.steps.steps.map((step) => {
                     return (
                       <div className="el--flex">
@@ -77,7 +85,10 @@ const RecipeDetail = (props) => {
                         <p>{step.step}</p>
                       </div>
                     );
-                  })}
+                  })
+                ) : (
+                  <p>Steps don't found</p>
+                )}
               </div>
             </div>
           </div>

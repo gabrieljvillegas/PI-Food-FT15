@@ -8,7 +8,6 @@ import { getAllRecipes } from "../../redux/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipes);
 
   const recipesSearch = useSelector((state) => state.recipesSearch);
 
@@ -22,16 +21,6 @@ const Home = () => {
     setLoading(false);
   }, [dispatch]);
 
-  //PAGINACION PARA TODAS LAS RECETAS
-  const indexOfLastPostAll = currentPageAll * postsPerPage;
-  const indexOfFirstPostAll = indexOfLastPostAll - postsPerPage;
-  const currentPostsAll = recipes.slice(
-    indexOfFirstPostAll,
-    indexOfLastPostAll
-  );
-  const paginate = (pageNumber) => setCurrentPageAll(pageNumber);
-
-  //PAGINACION PARA LAS RECETAS BUSCADAS
   const indexOfLastPostFilter = currentPageAll * postsPerPage;
   const indexOfFirstPostFilter = indexOfLastPostFilter - postsPerPage;
   const currentPostsFilter = recipesSearch.slice(
@@ -58,18 +47,7 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          <div className="home container">
-            <div className="home__pagination">
-              <PaginationAll
-                postsPerPage={postsPerPage}
-                totalPosts={recipes.length}
-                paginate={paginate}
-              />
-            </div>
-            <div className="home__recipes">
-              <Recipes recipes={currentPostsAll} loading={loading} />
-            </div>
-          </div>
+          <p>Cargando... desde el home</p>
         )}
       </div>
     </StyledDiv>
