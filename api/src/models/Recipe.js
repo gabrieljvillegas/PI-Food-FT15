@@ -26,13 +26,13 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     spoonacularScore: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
     },
     healthScore: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     steps: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
   });
 };

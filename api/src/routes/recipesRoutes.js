@@ -115,7 +115,10 @@ router.get("/", async (req, res, next) => {
           diets: vegetarian,
           spoonacularScore: recipe.spoonacularScore,
           healthScore: recipe.healthScore,
-          steps: recipe.analyzedInstructions[0],
+          steps:
+            recipe.analyzedInstructions[0] &&
+            recipe.analyzedInstructions[0].steps &&
+            recipe.analyzedInstructions[0].steps.map((step) => step.step),
           image: recipe.image,
         };
       });
@@ -199,7 +202,10 @@ router.get("/:idReceta", async (req, res, next) => {
         diets: vegetarian,
         spoonacularScore: recipeByIdApi.spoonacularScore,
         healthScore: recipeByIdApi.healthScore,
-        steps: recipeByIdApi.analyzedInstructions[0],
+        steps:
+          recipeByIdApi.analyzedInstructions[0] &&
+          recipeByIdApi.analyzedInstructions[0].steps &&
+          recipeByIdApi.analyzedInstructions[0].steps.map((step) => step.step),
         image: recipeByIdApi.image,
       };
 
@@ -225,6 +231,9 @@ router.post("/", async (req, res, next) => {
     image,
     diets,
   } = req.body;
+
+  console.log("bk spoom:", spoonacularScore);
+  console.log("score:", healthScore);
 
   if (name && summary) {
     try {

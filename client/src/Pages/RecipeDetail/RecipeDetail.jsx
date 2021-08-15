@@ -12,6 +12,8 @@ const RecipeDetail = (props) => {
     dispatch(getIdRecipe(idRecipe));
   }, [dispatch, idRecipe]);
 
+  console.log(recipeDetail);
+
   return (
     <StyledDiv>
       {recipeDetail.name && (
@@ -38,7 +40,7 @@ const RecipeDetail = (props) => {
               <div className="detail__dishTypes">
                 <p className="detail__dishTypes--title">Dish Types</p>
                 <div className="detail__dishTypes--content">
-                  {recipeDetail.dishTypes.lenght ? (
+                  {recipeDetail.dishTypes ? (
                     recipeDetail.dishTypes.map((type) => {
                       return <p>{type}</p>;
                     })
@@ -50,7 +52,7 @@ const RecipeDetail = (props) => {
               <div className="detail__diets">
                 <p className="detail__diets--title">Diets</p>
                 <div className="detail__diets--content">
-                  {recipeDetail.diets.length ? (
+                  {recipeDetail.diets ? (
                     recipeDetail.diets.map((diet) => {
                       return <p>{diet}</p>;
                     })
@@ -77,12 +79,11 @@ const RecipeDetail = (props) => {
             <div className="detail__steps">
               <h4>Steps</h4>
               <div className="detail__steps--el">
-                {recipeDetail.steps ? (
-                  recipeDetail.steps.steps.map((step) => {
+                {recipeDetail ? (
+                  recipeDetail.steps.map((step) => {
                     return (
                       <div className="el--flex">
-                        <p>{step.number}</p>
-                        <p>{step.step}</p>
+                        <p>{step}</p>
                       </div>
                     );
                   })

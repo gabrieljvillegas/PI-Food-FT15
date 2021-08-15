@@ -19,16 +19,29 @@ const CreateRecipe = () => {
     summary: "",
     diets: [],
     errors: {},
+    spoonacularScore: "",
+    healthScore: "",
+    steps: [],
   };
   const [recipe, setRecipe] = useState(initialState);
+  const [step, setStep] = useState("");
+  const [listStep, setListStep] = useState([]);
 
   function validate(values) {
+    console.log(typeof values.score);
+    console.log(values.score);
     let errors = {};
     if (!values.name) {
       errors.name = "Campo obligatorio";
     }
     if (!values.summary) {
       errors.summary = "Campo obligatorio";
+    }
+    if (0 > parseInt(values.score) || parseInt(values.score) > 100) {
+      errors.score = "Numero entre 0 y 100";
+    }
+    if (0 > values.scoreHealth || values.scoreHealth > 100) {
+      errors.scoreHealth = "Numero entre 0 y 100";
     }
     return errors;
   }
@@ -47,9 +60,10 @@ const CreateRecipe = () => {
       diets: [...recipe.diets, id],
     });
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(listStep);
     const { errors, ...sinErrors } = recipe;
     const result = validate(sinErrors);
 
@@ -61,13 +75,25 @@ const CreateRecipe = () => {
     });
 
     if (!Object.keys(result).length) {
-      alert("formulario valido");
+      console.log(recipe);
     }
-    // await axios.post("http://localhost:3001/api/characters/", recipe);
-    // setRecipe(initialState);
-    // document.getElementById("formCreate").reset();
-    // alert("se agrego el personaje");
+    console.log("recipeeee:", recipe);
+    await axios.post("http://localhost:3001/recipes", recipe);
+    setRecipe(initialState);
+    document.getElementById("formCreate").reset();
+    alert("se agrego el personaje");
   };
+  function handleChangeStep(e) {
+    setStep(e.target.value);
+  }
+
+  function addStep(e) {
+    e.preventDefault();
+    setRecipe({
+      ...recipe,
+      steps: [...recipe.steps, step],
+    });
+  }
 
   return (
     <StyledDiv>
@@ -96,15 +122,47 @@ const CreateRecipe = () => {
             {recipe.errors.summary && <p>Campo obligatorio</p>}
           </div>
           <div>
+            <label>Score</label>
+            <input
+              name="spoonacularScore"
+              className=""
+              type="number"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.score && <p>Valor entre 0 o 100</p>}
+          </div>
+          <div>
+            <label>Score Health</label>
+            <input
+              name="healthScore"
+              className=""
+              type="number"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.scoreHealth && <p>Valor entre 0 o 100</p>}
+          </div>
+          <div>
             {types &&
               types.map((type) => {
                 return (
                   <div>
                     <p>{type.name}</p>
-                    <buttton onClick={() => addDiet(type.id)}>Add</buttton>
+                    <p onClick={() => addDiet(type.id)}>Add</p>
                   </div>
                 );
               })}
+          </div>
+          <div>
+            <label>Steps</label>
+            <input
+              onChange={(e) => handleChangeStep(e)}
+              name="steps"
+              type="text"
+              autoComplete="off"
+            />
+            <button onClick={(e) => addStep(e)}>Add Step</button>
           </div>
           <button type="submit">Create</button>
         </form>
