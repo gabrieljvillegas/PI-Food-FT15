@@ -1,5 +1,5 @@
 import { StyledDiv } from "./styled";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 const axios = require("axios");
 
@@ -25,11 +25,9 @@ const CreateRecipe = () => {
   };
   const [recipe, setRecipe] = useState(initialState);
   const [step, setStep] = useState("");
-  const [listStep, setListStep] = useState([]);
 
   function validate(values) {
-    console.log(typeof values.score);
-    console.log(values.score);
+    console.log(values);
     let errors = {};
     if (!values.name) {
       errors.name = "Campo obligatorio";
@@ -37,11 +35,17 @@ const CreateRecipe = () => {
     if (!values.summary) {
       errors.summary = "Campo obligatorio";
     }
-    if (0 > parseInt(values.score) || parseInt(values.score) > 100) {
-      errors.score = "Numero entre 0 y 100";
+    if (
+      0 > parseInt(values.spoonacularScore) ||
+      parseInt(values.spoonacularScore) > 100
+    ) {
+      errors.spoonacularScore = "Numero entre 0 y 100";
     }
-    if (0 > values.scoreHealth || values.scoreHealth > 100) {
-      errors.scoreHealth = "Numero entre 0 y 100";
+    if (
+      0 > parseInt(values.healthScore) ||
+      parseInt(values.healthScore) > 100
+    ) {
+      errors.healthScore = "Numero entre 0 y 100";
     }
     return errors;
   }
@@ -63,8 +67,8 @@ const CreateRecipe = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(listStep);
     const { errors, ...sinErrors } = recipe;
+    console.log("sin errors:", sinErrors);
     const result = validate(sinErrors);
 
     setRecipe((prevState) => {
@@ -75,20 +79,20 @@ const CreateRecipe = () => {
     });
 
     if (!Object.keys(result).length) {
-      console.log(recipe);
+      await axios.post("http://localhost:3001/recipes", recipe);
+      setRecipe(initialState);
+      document.getElementById("formCreate").reset();
+      alert("se agrego el personaje");
     }
-    console.log("recipeeee:", recipe);
-    await axios.post("http://localhost:3001/recipes", recipe);
-    setRecipe(initialState);
-    document.getElementById("formCreate").reset();
-    alert("se agrego el personaje");
   };
+
   function handleChangeStep(e) {
     setStep(e.target.value);
   }
 
   function addStep(e) {
     e.preventDefault();
+    console.log((document.getElementsByClassName("stepInput")[0].value = ""));
     setRecipe({
       ...recipe,
       steps: [...recipe.steps, step],
@@ -97,76 +101,87 @@ const CreateRecipe = () => {
 
   return (
     <StyledDiv>
-      <div className="form container">
-        <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
-          <div>
-            <label>Name</label>
-            <input
-              name="name"
-              className=""
-              type="text"
-              autoComplete="off"
-              onChange={(e) => handleChange(e)}
-            />
-            {recipe.errors.name && <p>Campo obligatorio</p>}
-          </div>
-          <div>
-            <label>Summary</label>
-            <input
-              name="summary"
-              className=""
-              type="text"
-              autoComplete="off"
-              onChange={(e) => handleChange(e)}
-            />
-            {recipe.errors.summary && <p>Campo obligatorio</p>}
-          </div>
-          <div>
-            <label>Score</label>
-            <input
-              name="spoonacularScore"
-              className=""
-              type="number"
-              autoComplete="off"
-              onChange={(e) => handleChange(e)}
-            />
-            {recipe.errors.score && <p>Valor entre 0 o 100</p>}
-          </div>
-          <div>
-            <label>Score Health</label>
-            <input
-              name="healthScore"
-              className=""
-              type="number"
-              autoComplete="off"
-              onChange={(e) => handleChange(e)}
-            />
-            {recipe.errors.scoreHealth && <p>Valor entre 0 o 100</p>}
-          </div>
-          <div>
+      <form
+        className="form container"
+        id="formCreate"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="form__name">
+          <p>Name</p>
+          <input
+            name="name"
+            className=""
+            type="text"
+            autoComplete="off"
+            onChange={(e) => handleChange(e)}
+          />
+          {recipe.errors.name && <p>Campo obligatorio</p>}
+        </div>
+        <div className="form__summary">
+          <p>Summary</p>
+          <textarea
+            name="summary"
+            className=""
+            type="text"
+            autoComplete="off"
+            onChange={(e) => handleChange(e)}
+          />
+          {recipe.errors.summary && <p>Campo obligatorio</p>}
+        </div>
+        <div className="form__score">
+          <p>Score</p>
+          <input
+            name="spoonacularScore"
+            className=""
+            type="number"
+            autoComplete="off"
+            onChange={(e) => handleChange(e)}
+          />
+          {recipe.errors.spoonacularScore && <p>Valor entre 0 o 100</p>}
+        </div>
+        <div className="form__scoreHealth">
+          <p>Score Health</p>
+          <input
+            name="healthScore"
+            className=""
+            type="number"
+            autoComplete="off"
+            onChange={(e) => handleChange(e)}
+          />
+          {recipe.errors.healthScore && <p>Valor entre 0 o 100</p>}
+        </div>
+        <div className="form__diet">
+          <p>Diets</p>
+          <div className="grid">
             {types &&
               types.map((type) => {
                 return (
-                  <div>
-                    <p>{type.name}</p>
-                    <p onClick={() => addDiet(type.id)}>Add</p>
+                  <div className="grid__el">
+                    <p className="grid__el--name">{type.name}</p>
+                    <p
+                      className="grid__el--btn"
+                      onClick={() => addDiet(type.id)}
+                    >
+                      Add
+                    </p>
                   </div>
                 );
               })}
           </div>
-          <div>
-            <label>Steps</label>
-            <input
-              onChange={(e) => handleChangeStep(e)}
-              name="steps"
-              type="text"
-              autoComplete="off"
-            />
-            <button onClick={(e) => addStep(e)}>Add Step</button>
-          </div>
-          <button type="submit">Create</button>
-        </form>
-      </div>
+        </div>
+        <div className="form__steps">
+          <p>Steps</p>
+          <textarea
+            className="stepInput"
+            onChange={(e) => handleChangeStep(e)}
+            name="steps"
+            type="textarea"
+            autoComplete="off"
+          />
+          <button onClick={(e) => addStep(e)}>Add Step</button>
+        </div>
+        <button type="submit">Create</button>
+      </form>
     </StyledDiv>
   );
 };

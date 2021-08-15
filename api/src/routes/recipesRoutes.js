@@ -198,8 +198,14 @@ router.get("/:idReceta", async (req, res, next) => {
         name: recipeByIdApi.title,
         summary: recipeByIdApi.summary.replace(/<[^>]*>/g, ""),
         id: recipeByIdApi.id,
-        dishTypes: recipeByIdApi.dishTypes,
-        diets: vegetarian,
+        dishTypes: recipeByIdApi.dishTypes.map(
+          (dish) => dish.charAt(0).toUpperCase() + dish.slice(1)
+        ),
+        diets:
+          vegetarian &&
+          vegetarian.map(
+            (diet) => diet.charAt(0).toUpperCase() + diet.slice(1)
+          ),
         spoonacularScore: recipeByIdApi.spoonacularScore,
         healthScore: recipeByIdApi.healthScore,
         steps:

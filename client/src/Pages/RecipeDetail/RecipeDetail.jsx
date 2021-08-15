@@ -79,7 +79,7 @@ const RecipeDetail = (props) => {
             <div className="detail__steps">
               <h4>Steps</h4>
               <div className="detail__steps--el">
-                {recipeDetail ? (
+                {recipeDetail.steps ? (
                   recipeDetail.steps.map((step) => {
                     return (
                       <div className="el--flex">
