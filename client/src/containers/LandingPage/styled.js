@@ -24,7 +24,7 @@ export const StyledDiv = styled.div`
       width: 20rem;
       padding: 1rem 3rem;
       img {
-        animation: hola 1s ease-in-out;
+        animation: welcome 1s ease-in-out;
         font-size: 4.2rem;
       }
     }
@@ -33,11 +33,12 @@ export const StyledDiv = styled.div`
       &--link {
         color: white;
         text-decoration: none;
+        animation: welcome 1s ease-in-out;
       }
     }
   }
 
-  @keyframes hola {
+  @keyframes welcome {
     0% {
       width: 0;
     }
