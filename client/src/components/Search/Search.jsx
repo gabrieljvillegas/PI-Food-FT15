@@ -13,12 +13,17 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getNameRecipes(search));
+    document.getElementById("formSearch").reset();
   };
 
   return (
     <StyledDiv>
       <div className="search">
-        <form className="search__form" onSubmit={(e) => handleSubmit(e)}>
+        <form
+          id="formSearch"
+          className="search__form"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <input
             className="search__form--input"
             type="text"

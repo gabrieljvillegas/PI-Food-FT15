@@ -14,6 +14,7 @@ const Filter = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log("filter es:", filter);
     dispatch(filterByType(filter));
   }, [dispatch, filter]);
 
@@ -30,11 +31,12 @@ const Filter = () => {
       setFilter((prev) => [...prev, e.target.parentElement.textContent]);
     }
   };
+
   return (
     <StyledDiv>
       <div className="filter">
         <div className="filter__content">
-          <div className="filter__content--check">
+          <form id="formFilter" className="filter__content--check">
             {types &&
               types.map((type, idx) => {
                 return (
@@ -45,10 +47,8 @@ const Filter = () => {
                   />
                 );
               })}
-          </div>
-          <div className="filter__content--clear">
-            <button>Borrar filtros</button>
-          </div>
+          </form>
+          <div className="filter__content--clear"></div>
         </div>
         <div className="filter__title">
           <p>Filtro</p>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { RECIPES_URL, TYPES_URL, ID_URL } from "../../utils/constants";
+
 import {
   GET_RECIPES,
   GET_NAME_RECIPES,
@@ -11,32 +12,41 @@ import {
 
 export function getAllRecipes() {
   return function (dispatch) {
-    return axios.get(RECIPES_URL).then((recipes) => {
-      dispatch({
-        type: GET_RECIPES,
-        payload: recipes.data,
-      });
-    });
+    return axios
+      .get(RECIPES_URL)
+      .then((recipes) => {
+        dispatch({
+          type: GET_RECIPES,
+          payload: recipes.data,
+        });
+      })
+      .catch((error) => console.log(error));
   };
 }
 export function getNameRecipes(name) {
   return function (dispatch) {
-    return axios.get(`${RECIPES_URL}${name}`).then((recipes) => {
-      dispatch({
-        type: GET_NAME_RECIPES,
-        payload: recipes.data,
-      });
-    });
+    return axios
+      .get(`${RECIPES_URL}${name}`)
+      .then((recipes) => {
+        dispatch({
+          type: GET_NAME_RECIPES,
+          payload: recipes.data,
+        });
+      })
+      .catch((error) => console.log(error));
   };
 }
 export function getTypes() {
   return function (dispatch) {
-    return axios.get(TYPES_URL).then((types) => {
-      dispatch({
-        type: GET_TYPES,
-        payload: types.data,
-      });
-    });
+    return axios
+      .get(TYPES_URL)
+      .then((types) => {
+        dispatch({
+          type: GET_TYPES,
+          payload: types.data,
+        });
+      })
+      .catch((error) => console.log(error));
   };
 }
 

@@ -4,6 +4,10 @@ export const StyledDiv = styled.div`
   display: grid;
   grid-template-columns: 15% 85%;
 
+  .centerText {
+    text-align: center;
+    padding: 10rem;
+  }
   .home {
     margin-right: 6.2rem;
     &__pagination {
@@ -30,5 +34,13 @@ export const StyledDiv = styled.div`
     :hover {
       transform: scale(1.2);
     }
+  }
+  .loader {
+    transform: scale(0.2);
+    width: 100%;
+    height: 100%;
+    background: url(http://soldadoresymotores.com/site/images/loader.gif) 50%
+      50% no-repeat;
+    opacity: 0.8;
   }
 `;

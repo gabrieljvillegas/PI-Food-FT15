@@ -13,7 +13,9 @@ const Recipe = ({ name, image, diets, summary, spoonacularScore }) => {
               <p>Score</p>
               <p>{spoonacularScore}</p>
             </div>
-            <img src={image} alt="" />
+            <div>
+              <img src={image} alt="imagecargada" />
+            </div>
           </div>
           <div className="recipe__front--diets">
             {diets &&

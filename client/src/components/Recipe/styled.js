@@ -10,7 +10,7 @@ export const StyledDiv = styled.div`
     background-color: #19272e;
     border-radius: 1rem;
     max-width: 30rem;
-    height: 35rem;
+    height: 40rem;
     position: relative;
     transform-style: preserve-3d;
     transition: 0.8s ease;
@@ -61,7 +61,8 @@ export const StyledDiv = styled.div`
           }
         }
         img {
-          width: 100%;
+          width: 30rem;
+          height: 20rem;
           border-radius: 0.5rem;
         }
       }

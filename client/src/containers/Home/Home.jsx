@@ -4,54 +4,79 @@ import Sidebar from "../Sidebar/Sidebar";
 import PaginationAll from "../../components/PaginationAll/PaginationAll";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRecipes } from "../../redux/actions";
+import { getAllRecipes, seeAll } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const recipesSearch = useSelector((state) => state.recipesSearch);
+  const recipes = useSelector((state) => state.recipes);
 
-  const [loading, setLoading] = useState(false);
   const [currentPageAll, setCurrentPageAll] = useState(1);
   const [postsPerPage] = useState(9);
 
   useEffect(() => {
-    setLoading(true);
     dispatch(getAllRecipes());
-    setLoading(false);
+    console.log("me renderice soy el home");
   }, [dispatch]);
 
-  const indexOfLastPostFilter = currentPageAll * postsPerPage;
-  const indexOfFirstPostFilter = indexOfLastPostFilter - postsPerPage;
-  const currentPostsFilter = recipesSearch.slice(
-    indexOfFirstPostFilter,
-    indexOfLastPostFilter
+  const indexOfLastPostAll = currentPageAll * postsPerPage;
+  const indexOfFirstPostAll = indexOfLastPostAll - postsPerPage;
+  const currentPostsAll = recipes.slice(
+    indexOfFirstPostAll,
+    indexOfLastPostAll
   );
-  const paginates = (pageNumber) => setCurrentPageAll(pageNumber);
 
+  const indexOfLastPostSearch = currentPageAll * postsPerPage;
+  const indexOfFirstPostSearch = indexOfLastPostSearch - postsPerPage;
+  const currentPostsSearch = recipesSearch.slice(
+    indexOfFirstPostSearch,
+    indexOfLastPostSearch
+  );
+
+  const paginates = (pageNumber) => setCurrentPageAll(pageNumber);
+  console.log(recipesSearch.length);
   return (
     <StyledDiv>
       <Sidebar />
       <div>
         {recipesSearch.length ? (
+          typeof recipesSearch === "string" ? (
+            <div className="centerText">
+              <p>{recipesSearch}</p>
+            </div>
+          ) : (
+            <div className="home container">
+              <div className="home__pagination">
+                <PaginationAll
+                  postsPerPage={postsPerPage}
+                  totalPosts={recipesSearch.length}
+                  paginate={paginates}
+                />
+              </div>
+              <div className="home__recipes">
+                <Recipes recipes={currentPostsSearch} />
+              </div>
+            </div>
+          )
+        ) : recipes.length ? (
           <div className="home container">
             <div className="home__pagination">
               <PaginationAll
                 postsPerPage={postsPerPage}
-                totalPosts={recipesSearch.length}
+                totalPosts={recipes.length}
                 paginate={paginates}
               />
             </div>
             <div className="home__recipes">
-              <Recipes recipes={currentPostsFilter} loading={loading} />
+              <Recipes recipes={currentPostsAll} />
             </div>
           </div>
         ) : (
-          <div className="home container">
-            <p>Cargando... desde el home</p>
-          </div>
+          <div className="loader"></div>
         )}
+
         <Link to={"/createRecipe"} className="btn-create">
           Add <br /> Recipe
         </Link>
