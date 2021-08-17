@@ -12,7 +12,6 @@ export const StyledDiv = styled.div`
 
   .landing {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;

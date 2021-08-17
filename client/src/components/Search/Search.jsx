@@ -28,7 +28,7 @@ const Search = () => {
             className="search__form--input"
             type="text"
             autoComplete="off"
-            placeholder="Ingrese nombre"
+            placeholder="Enter recipe name..."
             onChange={(e) => handleChange(e)}
           />
           <button type="submit">Search</button>

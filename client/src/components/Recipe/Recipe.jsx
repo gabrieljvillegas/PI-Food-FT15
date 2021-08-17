@@ -26,13 +26,13 @@ const Recipe = ({ name, image, diets, summary, spoonacularScore }) => {
         </div>
         <div className="recipe__back">
           <div className="recipe__back--title">
-            <h4>Resumen</h4>
+            <h4>Summary</h4>
           </div>
           <div className="recipe__back--content">
             <p>
               {" "}
               {(summary = summary.slice(0, 400))}
-              ...[LEER MAS]
+              ...
             </p>
           </div>
         </div>

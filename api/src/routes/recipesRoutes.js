@@ -86,7 +86,7 @@ router.get("/", async (req, res, next) => {
       if (allRecipes.length > 0) {
         res.status(200).json(allRecipes);
       } else {
-        res.status(200).json("No se encuentran recetas con ese nombre");
+        res.status(400).json("No se encuentran recetas con ese nombre");
       }
     } catch (error) {
       next(error);
@@ -238,9 +238,6 @@ router.post("/", async (req, res, next) => {
     diets,
   } = req.body;
 
-  console.log("bk spoom:", spoonacularScore);
-  console.log("score:", healthScore);
-
   if (name && summary) {
     try {
       let newRecipe = await Recipe.create({
@@ -260,7 +257,9 @@ router.post("/", async (req, res, next) => {
       next(error);
     }
   } else {
-    res.status(400).json("Faltan datos");
+    res
+      .status(400)
+      .json({ error: "Es necesario cargar el resumen y el nombre" });
   }
 });
 

@@ -13,7 +13,7 @@ const Nav = () => {
         <div className="nav__back">
           <Route path={["/recipeDetail", "/createRecipe"]}>
             <Link className="nav__back--link" to={"/home"}>
-              Volver
+              Back
             </Link>
           </Route>
         </div>

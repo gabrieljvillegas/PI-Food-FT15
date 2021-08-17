@@ -14,5 +14,20 @@ export const StyledDiv = styled.div`
         padding: 1rem;
       }
     }
+
+    button {
+      font-weight: bold;
+      color: white;
+      border-radius: 1rem;
+      padding: 0rem 4rem;
+      border: none;
+      background-color: #bc4764;
+      transition: 0.3s ease;
+
+      :hover {
+        cursor: pointer;
+        transform: scale(1.01);
+      }
+    }
   }
 `;

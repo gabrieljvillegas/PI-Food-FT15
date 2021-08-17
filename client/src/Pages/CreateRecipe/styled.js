@@ -109,6 +109,11 @@ export const StyledDiv = styled.div`
         border: 1px solid white;
         padding: 0.5rem;
         border-radius: 2rem;
+        cursor: pointer;
+
+        :hover {
+          background-color: #19272e;
+        }
       }
     }
 
