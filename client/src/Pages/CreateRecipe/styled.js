@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import image from "../../images/create-recipes.jpg";
 
 export const StyledDiv = styled.div`
   .titlePage {

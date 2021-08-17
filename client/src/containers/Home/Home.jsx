@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import PaginationAll from "../../components/PaginationAll/PaginationAll";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRecipes, seeAll } from "../../redux/actions";
+import { getAllRecipes } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -18,7 +18,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllRecipes());
-    console.log("me renderice soy el home");
   }, [dispatch]);
 
   const indexOfLastPostAll = currentPageAll * postsPerPage;
@@ -36,7 +35,7 @@ const Home = () => {
   );
 
   const paginates = (pageNumber) => setCurrentPageAll(pageNumber);
-  console.log(recipesSearch.length);
+
   return (
     <StyledDiv>
       <Sidebar />

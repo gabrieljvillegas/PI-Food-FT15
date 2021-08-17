@@ -41,8 +41,6 @@ function reducer(state = initialState, action) {
     case FILTER_BY_TYPE:
       let filterByType;
       function filterF(recipesToFilter) {
-        console.log(payload);
-        console.log("antes de filtrar:", recipesToFilter);
         if (payload.length) {
           filterByType = recipesToFilter.filter((recipe) => {
             let flag = false;
@@ -73,7 +71,6 @@ function reducer(state = initialState, action) {
       } else {
         filterF(state.recipes);
       }
-      console.log(filterByType);
       if (!filterByType.length && payload.length) {
         filterByType = "No hay recetas";
       }

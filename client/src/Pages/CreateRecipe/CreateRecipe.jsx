@@ -2,7 +2,6 @@ import { StyledDiv } from "./styled";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { dishTypes } from "../../utils/dishTypes";
-import { imagesRecipes } from "../../utils/imagesRecipe";
 import Checkbox from "../../components/Checkbox/Checkbox";
 const axios = require("axios");
 
@@ -61,9 +60,6 @@ const CreateRecipe = () => {
       };
     });
   };
-  function handleImage(e) {
-    setRecipe({ ...recipe, image: e.target.value });
-  }
 
   function addDiet(id) {
     if (recipe.diets.includes(id)) {
