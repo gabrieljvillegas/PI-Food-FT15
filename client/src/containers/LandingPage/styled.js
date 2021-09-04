@@ -5,8 +5,8 @@ export const StyledDiv = styled.div`
   position: fixed;
   background-image: url(${image});
   width: 100%;
-  height: 100%;
-  background-position: center -10rem;
+  height: 100vh;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 

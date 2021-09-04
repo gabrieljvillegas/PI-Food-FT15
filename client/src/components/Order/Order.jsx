@@ -54,9 +54,27 @@ const Order = () => {
             />
             Score Up
           </div>
+          <div className="order__content--scoreUp">
+            <input
+              name="order"
+              type="radio"
+              value="HealthUp"
+              onChange={(e) => handleChange(e)}
+            />
+            Health Up
+          </div>
+          <div className="order__content--scoreUp">
+            <input
+              name="order"
+              type="radio"
+              value="HealthDown"
+              onChange={(e) => handleChange(e)}
+            />
+            Health Down
+          </div>
         </div>
         <div className="order__title">
-          <p>Orden</p>
+          <p>Order</p>
         </div>
       </div>
     </StyledDiv>

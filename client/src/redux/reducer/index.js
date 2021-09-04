@@ -108,6 +108,18 @@ function reducer(state = initialState, action) {
               } else {
                 return -1;
               }
+            case "HealthUp":
+              if (a.healthScore > b.healthScore) {
+                return 1;
+              } else {
+                return -1;
+              }
+            case "HealthDown":
+              if (a.healthScore < b.healthScore) {
+                return 1;
+              } else {
+                return -1;
+              }
             default:
               return recipesToFilter;
           }

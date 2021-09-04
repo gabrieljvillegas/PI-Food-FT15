@@ -263,4 +263,9 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.get("/recipes/:name", (req, res) => {
+  const { id } = req.query;
+  const { name } = req.params;
+});
+
 module.exports = router;

@@ -12,17 +12,19 @@ const PaginationAll = ({ postsPerPage, totalPosts, paginate }) => {
   return (
     <StyledDiv>
       <div className="pagination">
-        {pageNumbers.map((number, idx) => (
-          <Link
-            className="pagination__link"
-            key={idx}
-            onClick={() => paginate(number)}
-          >
-            <div>
-              <p> {number}</p>
-            </div>
-          </Link>
-        ))}
+        {pageNumbers &&
+          pageNumbers.map((number, idx) => (
+            <Link
+              to={"#"}
+              className="pagination__link"
+              key={idx}
+              onClick={() => paginate(number)}
+            >
+              <div>
+                <p> {number}</p>
+              </div>
+            </Link>
+          ))}
       </div>
     </StyledDiv>
   );

@@ -3,10 +3,12 @@ import Recipe from "../../components/Recipe/Recipe";
 import { StyledDiv } from "./styled";
 
 const Recipes = ({ recipes }) => {
+  console.log(recipes);
+  console.log(recipes.length);
   return (
     <StyledDiv>
       <div className="recipes container">
-        {recipes &&
+        {recipes.length &&
           recipes.map((recipe, idx) => {
             return (
               <Link
